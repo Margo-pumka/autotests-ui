@@ -7,5 +7,6 @@ def test_success_registration(registration_page, dashboard_page):
 
 
 def test_go_to_login_page(registration_page, login_page):
-    registration_page.click_login_button()
+    registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
+    registration_page.click_login_link()
     login_page.check_login_url()
