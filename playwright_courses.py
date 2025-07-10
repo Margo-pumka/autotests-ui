@@ -1,6 +1,6 @@
 from playwright.sync_api import sync_playwright, expect
 with sync_playwright() as playwright:
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
@@ -14,7 +14,7 @@ with sync_playwright() as playwright:
     registration_button.click()
     state = context.storage_state()
 
-    new_browser = playwright.chromium.launch(headless=False)
+    new_browser = playwright.chromium.launch(headless=True)
     new_context = browser.new_context(storage_state=state)
     new_page = new_context.new_page()
     new_page_icon = new_page.get_by_test_id('courses-list-empty-view-icon')
