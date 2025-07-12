@@ -1,4 +1,4 @@
-from typing import re
+import re
 
 from playwright.sync_api import Page
 

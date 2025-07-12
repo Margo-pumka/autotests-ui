@@ -13,7 +13,7 @@ class CreateCoursePage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
         # Форма для создания курса
-        self.fill_create_course_form = CreateCourseFormComponent(page)
+        self.create_course_form = CreateCourseFormComponent(page)
         self.image_upload_widget = ImageUploadWidgetComponent(page, 'create-course-preview')
 
         # Форма для создания задания
