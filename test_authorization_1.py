@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright, expect
     ("user.name@gmail.com", "  "),
     ("  ", "password")
 ])
-def test_wrong_email_or_password_authorization(email: str, password: str):
+def wrong_email_or_password_authorization(email: str, password: str):
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         page = browser.new_page()

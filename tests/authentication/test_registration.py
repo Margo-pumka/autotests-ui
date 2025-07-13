@@ -1,13 +1,28 @@
+import allure
 import pytest
+from allure_commons.types import Severity
 
 from pages.authentication.login_page import LoginPage
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard import DashboardPage
+from tools.allure.epics import AllureEpic
+from tools.allure.features import AllureFeature
+from tools.allure.stories import AllureStory
+from tools.allure.tags import AllureTag
 
 
 @pytest.mark.regression
 @pytest.mark.registration
+@allure.tag(AllureTag.REGRESSION, AllureTag.REGISTRATION)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.AUTHENTICATION)
+@allure.story(AllureStory.REGISTRATION)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.AUTHENTICATION)
+@allure.sub_suite(AllureStory.REGISTRATION)
 class TestRegistration:
+    @allure.title("Registration with correct email, username and password")
+    @allure.severity(Severity.CRITICAL)
     def test_success_registration(self, registration_page: RegistrationPage, dashboard_page: DashboardPage):
         registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
         registration_page.registration_form.fill(email='user.name@gmail.com', password='password', username='username')
@@ -17,6 +32,9 @@ class TestRegistration:
         dashboard_page.check_dashboard_url()
         dashboard_page.dashboard_toolbar_view.check_visible()
 
+    @allure.tag(AllureTag.NAVIGATION)
+    @allure.title("Navigation from registration page to login page")
+    @allure.severity(Severity.NORMAL)
     def test_navigate_from_registration_to_authorization(self,
                                                          registration_page: RegistrationPage,
                                                          login_page: LoginPage):
