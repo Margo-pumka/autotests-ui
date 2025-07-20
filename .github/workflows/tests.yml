@@ -46,23 +46,23 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
 
-      - name: Upload Allure Report as artifact
+      - name: Upload Allure History as artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          artifact: allure-report
-          path: allure-report
+          name: allure-history
+          path: allure-history
 
   publish-report:
     runs-on: ubuntu-latest
     needs: run-tests
 
     steps:
-      - name: Download Allure Report as artifact
+      - name: Download Allure History as artifact
         uses: actions/download-artifact@v4
         with:
-          name: allure-report
-          path: allure-report
+          name: allure-history
+          path: allure-history
 
       - name: Deploy report to Github Pages
         if: always()
