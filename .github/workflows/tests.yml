@@ -55,10 +55,10 @@ jobs:
 
   publish-report:
     runs-on: ubuntu-latest
+    needs: run-tests
 
     steps:
       - name: Download Allure History as artifact
-        needs: run-tests
         uses: actions/download-artifact@v4
         with:
           name: allure-history-atrifact
